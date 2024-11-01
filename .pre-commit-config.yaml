@@ -1,0 +1,29 @@
+repos:
+  - repo: local
+    hooks:
+      - id: gofumpt
+        name: gofumpt
+        entry: gofumpt
+        language: golang
+        types: [go]
+        args: ["-w"]
+        files: \.go$
+        additional_dependencies:
+          - mvdan.cc/gofumpt@latest
+
+      - id: gci
+        name: gci
+        entry: gci
+        language: golang
+        types: [go]
+        args: ["write", "--skip-generated", "-s", "standard", "-s", "default"]
+        files: \.go$
+        additional_dependencies:
+          - github.com/daixiang0/gci@latest
+
+      - id: lint
+        name: golangci-lint
+        entry: golangci-lint run --config .golangci.yml
+        language: golang
+        types: [go]
+        pass_filenames: false

@@ -1,0 +1,33 @@
+name: Build and Push to Local Registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: remote-server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.23
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test ./... -v
+
+      - name: Build Docker image
+        run: |
+          docker build -t storage-service:latest .
+          docker tag storage-service:latest localhost:5000/storage-service:latest
+
+      - name: Push Docker image to local registry
+        run: docker push localhost:5000/storage-service:latest

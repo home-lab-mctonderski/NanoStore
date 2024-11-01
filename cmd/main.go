@@ -1,8 +1,10 @@
+// Author: Maciej Tonderski
 package main
 
 import (
-    "github.com/McTonderski/storage-service/internal/api"
-    "log"
+	"log"
+
+	"github.com/McTonderski/storage-service/internal/api"
 )
 
 func main() {
