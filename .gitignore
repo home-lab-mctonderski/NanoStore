@@ -1,0 +1,19 @@
+# Binaries
+/storage-service
+
+# Vendor directory
+/vendor/
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Test binaries
+*.out
+
+# Dependency directories
+vendor/
